@@ -1,12 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Models;
 
-use Illuminate\Http\Request;
-use phpDocumentor\Reflection\Types\Self_;
-
-class News extends Controller
+class News
 {
+
     private $news = [
         [
             'id' => 1,
@@ -36,33 +34,13 @@ class News extends Controller
 
     ];
 
-    public function news()
-    {
-        $html = "<h1>NEWS</h1>";
 
-        foreach ($this->news as $news) {
-            $html .=  "<h2><a href='/news/{$news['id']}>{$news['title']}</a></h2>
-            <div>{$news['description']}</div>
-            <hr>";
-        }
-        return $html;
+    public function getNews()
+    {
+        return $this->news;
     }
 
-    public function newsOne($id)
-    {
-        $news = $this->getNewsById($id);
-
-        if (!empty($news)) {
-            $html = "<h1>{$news['title']}</h1>
-                    <div>{$news['description']}</div>
-                    <hr>
-                    <a href='/news'>Назад</a>";
-            return $html;
-        }
-        return redirect('/news');
-    }
-
-    private function getNewsById($id)
+    public function getNewsById($id)
     {
         foreach ($this->news as $news) {
             if ($news['id'] == $id) {
@@ -70,5 +48,15 @@ class News extends Controller
             }
         }
         return [];
+    }
+    public function newsOne($id)
+    {
+        $news = (new News())->getNewsById($id);
+
+        if (!empty($news)) {
+
+            return $news;
+        }
+        return redirect('/news');
     }
 }

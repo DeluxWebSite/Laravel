@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin;
 use App\Http\Controllers\HelloWord;
 use App\Http\Controllers\News;
+use App\Http\Controllers\Newscontrollers;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,6 +25,6 @@ Route::get('/hello', [HelloWord::class, 'hello']);
 
 Route::get('/admin', [Admin::class, 'login']);
 
-Route::get('/news', [News::class, 'news']);
+Route::get('/news', [Newscontrollers::class, 'news']);
 
-Route::get('/news/{id}', [News::class, 'newsOne']);
+Route::get('/news/{id}', [Newscontrollers::class, 'newsOne']);

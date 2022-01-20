@@ -8,6 +8,6 @@ class HelloWord extends Controller
 {
     public function hello()
     {
-        return '<h1> <br>hello word! and hello for you!</h1>';
+        return view('hello');
     }
 }
