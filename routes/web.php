@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin;
+use App\Http\Controllers\HelloWord;
+use App\Http\Controllers\News;
+use App\Http\Controllers\Newscontrollers;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,14 +21,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/test1', function () {
-    return '<h1> <br>hello word 1 !</h1>';
-});
+Route::get('/hello', [HelloWord::class, 'hello']);
 
-Route::get('/test2', function () {
-    return '<h2> <br> <br> hello word 2 !</h2>';
-});
+Route::get('/admin', [Admin::class, 'login']);
 
-Route::get('/test3', function () {
-    return '<h3><br><br><br>hello word 3 !</h3>';
-});
+Route::get('/news', [Newscontrollers::class, 'news']);
+
+Route::get('/news/{id}', [Newscontrollers::class, 'newsOne']);
