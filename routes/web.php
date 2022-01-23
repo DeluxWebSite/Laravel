@@ -25,6 +25,12 @@ Route::get('/hello', [HelloWord::class, 'hello']);
 
 Route::get('/admin', [Admin::class, 'login']);
 
+Route::post('/admin/create', [Admin::class, 'create'])->name('admin.create');
+
+Route::get('/admin/new', [Admin::class, 'new'])->name('admin.new');
+
+Route::get('/admin/feedback', [Admin::class, 'feedback'])->name('admin.feedback');
+
 Route::get('/news', [Newscontrollers::class, 'news']);
 
 Route::get('/news/{id}', [Newscontrollers::class, 'newsOne']);
