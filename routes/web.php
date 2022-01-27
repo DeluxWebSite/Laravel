@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin;
+use App\Http\Controllers\DBController;
 use App\Http\Controllers\HelloWord;
 use App\Http\Controllers\News;
 use App\Http\Controllers\Newscontrollers;
@@ -34,3 +35,5 @@ Route::get('/admin/feedback', [Admin::class, 'feedback'])->name('admin.feedback'
 Route::get('/news', [Newscontrollers::class, 'news']);
 
 Route::get('/news/{id}', [Newscontrollers::class, 'newsOne']);
+
+Route::get('/db', [DBController::class, 'index']);
