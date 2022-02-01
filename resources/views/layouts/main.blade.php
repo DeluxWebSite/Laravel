@@ -8,8 +8,10 @@
     <title>@section('title')@show</title>
 
     <script src="{{asset('js/app.js')}}" defer></script>
+
+
+
     <link rel="stylesheet" href="/resources/css/style.css">
-    <link rel="stylesheet" href="{{asset('css/app.css')}}">
 </head>
 
 <body>

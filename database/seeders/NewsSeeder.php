@@ -19,7 +19,9 @@ class NewsSeeder extends Seeder
                 'title' => $generator->text('50'),
                 'content' => $generator->text(),
                 'source' => $generator->url(),
-                'publish_date' => $generator->dateTime()
+                'publish_date' => $generator->dateTime(),
+                'category_id' => 1
+
             ]);
     }
 }

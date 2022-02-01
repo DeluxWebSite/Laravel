@@ -9,7 +9,7 @@
 <div>
     @forelse($news as $item)
 
-    <a href="{{route('newsOne', $item->id)}}">{!! $item->title !!}</a>
+    <a href="{{route('news', $item->id)}}">{!! $item->title !!}</a>
     <br>
     <hr>
 

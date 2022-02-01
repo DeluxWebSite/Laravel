@@ -22,8 +22,8 @@ class DBController extends Controller
         // dd($result);
         // echo "готово!";
 
-        $news = \DB::select('SELECT * FROM news_dz');
-        $news = json_decode(json_encode($news), true);
+        $news = \DB::select('SELECT * FROM news');
+        // $news = json_decode(json_encode($news), true);
         // dd($news);
         return view("news", ['news' => $news]);
     }

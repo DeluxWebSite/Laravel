@@ -12,6 +12,60 @@
 
 namespace App\Models{
 /**
+ * App\Models\Category
+ *
+ * @property int $id
+ * @property string $name
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\News[] $news
+ * @property-read int|null $news_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Category newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Category newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Category query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Category whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Category whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Category whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Category whereUpdatedAt($value)
+ */
+	class Category extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\News
+ *
+ * @property int $id
+ * @property string $title Заголовок новости
+ * @property string|null $content
+ * @property string|null $source
+ * @property string|null $publish_date
+ * @property string|null $image
+ * @property string|null $deleted_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property int|null $category_id
+ * @method static \Illuminate\Database\Eloquent\Builder|News newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|News newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|News query()
+ * @method static \Illuminate\Database\Eloquent\Builder|News whereCategoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|News whereContent($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|News whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|News whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|News whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|News whereImage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|News wherePublishDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|News whereSource($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|News whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|News whereUpdatedAt($value)
+ * @mixin \Eloquent
+ * @property-read \App\Models\Category|null $category
+ */
+	class News extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\User
  *
  * @property int $id
@@ -38,6 +92,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 	class User extends \Eloquent {}
 }

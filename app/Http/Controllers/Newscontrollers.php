@@ -12,16 +12,35 @@ class Newscontrollers extends Controller
 
     public function news()
     {
-        $news = (new News())->getNews();
+
+
+        // $item = News::find('4');
+        // dd($item->category->news);
+
+        $news = News::all();
+
+        // foreach ($news as $item) {
+        //     dump($item->category->name);
+        // }
+
+        // $news = (new News())->getNews();
 
 
         return view("news", ['news' => $news]);
     }
 
+    public function list(int $CategoryId)
+    {
+
+        return view('list', ['news' => News::getByCategoryId($CategoryId)]);
+    }
+
     public function newsOne($id)
     {
-        $news = (new News())->newsOne($id);
 
-        return view("newsOne", ['news' => $news]);
+        $item = News::find($id);
+        // $news = (new News())->newsOne($id);
+
+        return view("newsOne", ['item' => $item]);
     }
 }

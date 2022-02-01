@@ -1,29 +1,64 @@
 @extends('layouts.main')
 
 @section('title')
-@parent
-Создание новости
+Админка новости
 @endsection
 
 @section('content')
 <div class="row justify-content-center">
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
+    @if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+    @endif
     <div class="col-md-6">
-        {!! Form::open(['route'=>'admin.create']) !!}
-
-        <labl class="form-label">
-            Заголовок
-        </labl>
+        <h1>Создать новость</h1>
+        {!! Form::open(['route' => 'admin::news::save']) !!}
+        @if($model->id)
+        <input type="hidden" name="id" value="{{$model->id}}">
+        @endif
         <div class="form-group">
-            {!! Form::text('title', '', ['class'=>'form-control']) !!}
-        </div>
-        <labl class="form-label">
-            Описание
-        </labl>
-        <div class="form-group">
-            {!! Form::textarea('content', '', ['class'=>'form-control']) !!}
+            <label>{{__('Заголовок')}}</label>
+            @error('title')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+            {!! Form::text("title",$model->title ?? old('title'), ['class' => "form-control"]) !!}
         </div>
         <div class="form-group">
-            {!! Form::submit('send', ['class'=>'btn-success']) !!}
+            <label>Описание</label>
+            {!! Form::textarea("description",$model->description ?? old('content') ??"", ['class' => "form-control"])
+            !!}
+        </div>
+        <div class="form-group">
+            <label>Категория</label>
+            {!! Form::select('category_id', $categories, $model->category_id, ['class' => 'form-control']) !!}
+        </div>
+        <div class="form-group">
+            <input type="hidden" name="active" value="0">
+            <label>
+                {!! Form::checkbox("active",1, $model->active) !!}
+                Active
+            </label>
+        </div>
+        <div class="form-group">
+            <label>Дата публикации</label>
+            {!! Form::date(
+            'publish_date',
+            $model->publish_date ?? old('publish_date'),
+            ['dataformatas' =>'Y-m-d', 'class' => 'form-control'] )
+            !!}
+        </div>
+        <div class="form-group">
+            <input class="btn btn-success" type="submit" value="Save">
         </div>
         {!! Form::close() !!}
     </div>

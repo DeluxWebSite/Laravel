@@ -2,61 +2,55 @@
 
 namespace App\Models;
 
-class News
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+/**
+ * App\Models\News
+ *
+ * @property int $id
+ * @property string $title Заголовок новости
+ * @property string|null $content
+ * @property string|null $source
+ * @property string|null $publish_date
+ * @property string|null $image
+ * @property string|null $deleted_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property int|null $category_id
+ * @method static \Illuminate\Database\Eloquent\Builder|News newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|News newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|News query()
+ * @method static \Illuminate\Database\Eloquent\Builder|News whereCategoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|News whereContent($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|News whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|News whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|News whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|News whereImage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|News wherePublishDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|News whereSource($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|News whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|News whereUpdatedAt($value)
+ * @mixin \Eloquent
+ */
+class News extends Model
 {
+    use HasFactory;
 
-    // private $news = [
-    //     [
-    //         'id' => 1,
-    //         'title' => 'news 1',
-    //         'description' => 'описание новости 1',
-    //     ],
-    //     [
-    //         'id' => 2,
-    //         'title' => 'news 2',
-    //         'description' => 'описание новости 2',
-    //     ],
-    //     [
-    //         'id' => 3,
-    //         'title' => 'news 3',
-    //         'description' => 'описание новости 3',
-    //     ],
-    //     [
-    //         'id' => 4,
-    //         'title' => 'news 4',
-    //         'description' => 'описание новости 4',
-    //     ],
-    //     [
-    //         'id' => 5,
-    //         'title' => 'news 5',
-    //         'description' => 'описание новости 5',
-    //     ]
+    protected $fillable = [
+        'title',
+        'content'
+    ];
 
-    // ];
-
-
-    public function getNews()
+    public static function getByCategoryId(int $CategoryId)
     {
-        return $this->news;
+        return static::query()
+            ->where('category_id', $CategoryId)
+            ->get();
     }
 
-    public function getNewsById($id)
+    public function category()
     {
-        foreach ($this->news as $news) {
-            if ($news['id'] == $id) {
-                return $news;
-            }
-        }
-        return [];
-    }
-    public function newsOne($id)
-    {
-        $news = (new News())->getNewsById($id);
-
-        if (!empty($news)) {
-
-            return $news;
-        }
-        return redirect('/news');
+        return $this->belongsTo(Category::class);
     }
 }
