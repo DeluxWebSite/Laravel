@@ -28,39 +28,36 @@
         @endif
         <div class="form-group">
             <label>{{__('Заголовок')}}</label>
-            @error('title')
+            {{-- @error('title')
             <div class="alert alert-danger">{{ $message }}</div>
-            @enderror
-            {!! Form::text("title",$model->title ?? old('title'), ['class' => "form-control"]) !!}
-        </div>
-        <div class="form-group">
-            <label>Описание</label>
-            {!! Form::textarea("description",$model->description ?? old('content') ??"", ['class' => "form-control"])
-            !!}
-        </div>
-        <div class="form-group">
-            <label>Категория</label>
-            {!! Form::select('category_id', $categories, $model->category_id, ['class' => 'form-control']) !!}
-        </div>
-        <div class="form-group">
+        @enderror --}}
+        {!! Form::text("title",$model->title ?? old('title'), ['class' => "form-control"]) !!}
+    </div>
+    <div class="form-group">
+        <label>Описание</label>
+        {!! Form::textarea("content",$model->content ?? old('content') ??"", ['class' => "form-control"])
+        !!}
+    </div>
+    <div class="form-group">
+        <label>Категория</label>
+        {!! Form::select("category_id", $categories, $model->category_id, ['class' => 'form-control']) !!}
+    </div>
+    {{-- <div class="form-group">
             <input type="hidden" name="active" value="0">
             <label>
                 {!! Form::checkbox("active",1, $model->active) !!}
                 Active
             </label>
-        </div>
-        <div class="form-group">
-            <label>Дата публикации</label>
-            {!! Form::date(
-            'publish_date',
-            $model->publish_date ?? old('publish_date'),
-            ['dataformatas' =>'Y-m-d', 'class' => 'form-control'] )
-            !!}
-        </div>
-        <div class="form-group">
-            <input class="btn btn-success" type="submit" value="Save">
-        </div>
-        {!! Form::close() !!}
+        </div> --}}
+    <div class="form-group">
+        <label>Дата публикации</label>
+        {!! Form::date('publish_date', $model->publish_date ?? old('publish_date'), ['dataformatas' =>'Y-m-d', 'class' => 'form-control'] )
+        !!}
     </div>
+    <div class="form-group">
+        <input class="btn btn-success" type="submit" value="Save">
+    </div>
+    {!! Form::close() !!}
+</div>
 </div>
 @endsection

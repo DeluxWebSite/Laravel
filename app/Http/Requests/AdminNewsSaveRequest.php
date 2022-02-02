@@ -10,10 +10,10 @@ class AdminNewsSaveRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|min:10|max:50|unique:news',
-            'description' => 'max:1000| required',
+            'title' => 'required|min:5|max:50|unique:news',
+            'content' => 'max:1000| required',
             'category_id' => 'required|integer|exists:categories,id',
-            'active' => 'boolean',
+            // 'active' => 'boolean',
             'publish_date' => 'date'
         ];
     }
@@ -26,7 +26,7 @@ class AdminNewsSaveRequest extends FormRequest
     public function attributes()
     {
         return [
-            'title' => (__('labels.title'))
+            'title' => (__('Заголовок'))
         ];
     }
 }

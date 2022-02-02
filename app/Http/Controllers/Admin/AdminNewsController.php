@@ -48,13 +48,17 @@ class AdminNewsController extends Controller
 
     public function save(AdminNewsSaveRequest $request)
     {
+        // dd($request);
+
         $id = $request->post('id');
-        /** @var News $model */
+
+        // dd($id);
+
         //$model = News::findOrNew($id);
         $model = $id ? News::find($id) : new News();
         $model->fill($request->all());
         $model->save();
-        return redirect()->route("admin::news::update", ['news' => $model->id])
+        return redirect()->route("admin::news::index", ['news' => $model->id])
             ->with('success', "Данные сохранены");
     }
 }

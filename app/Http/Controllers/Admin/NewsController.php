@@ -47,8 +47,9 @@ class NewsController extends Controller
 
     public function save(AdminNewsSaveRequest $request)
     {
+
         $id = $request->post('id');
-        /** @var News $model */
+
         //$model = News::findOrNew($id);
         $model = $id ? News::find($id) : new News();
         $model->fill($request->all());
