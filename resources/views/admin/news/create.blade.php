@@ -27,9 +27,10 @@
         <input type="hidden" name="id" value="{{$model->id}}">
         @endif
         <div class="form-group">
-            <label>{{__('Заголовок')}}</label>
+            <label>{{__('labels.title')}}</label>
             {{-- @error('title')
-            <div class="alert alert-danger">{{ $message }}</div>
+            <div class="alert alert-danger">{{ $message }}
+        </div>
         @enderror --}}
         {!! Form::text("title",$model->title ?? old('title'), ['class' => "form-control"]) !!}
     </div>
@@ -51,7 +52,8 @@
         </div> --}}
     <div class="form-group">
         <label>Дата публикации</label>
-        {!! Form::date('publish_date', $model->publish_date ?? old('publish_date'), ['dataformatas' =>'Y-m-d', 'class' => 'form-control'] )
+        {!! Form::date('publish_date', $model->publish_date ?? old('publish_date'), ['dataformatas' =>'Y-m-d', 'class'
+        => 'form-control'] )
         !!}
     </div>
     <div class="form-group">

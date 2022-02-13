@@ -26,7 +26,7 @@ class AdminNewsSaveRequest extends FormRequest
     public function attributes()
     {
         return [
-            'title' => (__('Заголовок'))
+            'title' => (__('labels.title'))
         ];
     }
 }

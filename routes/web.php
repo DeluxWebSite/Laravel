@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\Admin;
 use App\Http\Controllers\Admin\AdminNewsController;
+use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\DBController;
 use App\Http\Controllers\HelloWord;
+use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\News;
 use App\Http\Controllers\Newscontrollers;
 use Illuminate\Support\Facades\Route;
@@ -45,7 +47,8 @@ Route::get('/db', [DBController::class, 'index']);
 
 Route::group([
     'prefix' => '/admin/news',
-    'as' => 'admin::news::'
+    'as' => 'admin::news::',
+    'middleware' => ['auth']
 ], function () {
     Route::get('/', [AdminNewsController::class, 'index'])
         ->name('index');
@@ -64,3 +67,13 @@ Route::group([
         ->where('id', '[0-9]+')
         ->name('delete');
 });
+
+Route::get('/locale/{lang}', [LocaleController::class, 'index'])->name('locale');
+// ->where('lang', '[a-z]+')
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::post('/admin/profile', [\App\Http\Controllers\Admin\ProfileController::class, 'update'])
+    ->name('admin:profile')
+    ->middleware('auth');
