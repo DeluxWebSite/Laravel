@@ -18,7 +18,7 @@
         </div>
         @endif
         <form action="{{route('admin:profile')}}" method="POST">
-
+            @csrf
             <div class="form-group">
                 <label>Имя</label>
                 <input class="form-control" type="text" name="name" value="{{$user->name ?? old('name')}}">
@@ -38,7 +38,7 @@
             <div class="form-group">
                 <input class="btn btn-success" type="submit" value="Save">
             </div>
-            @csrf
+
         </form>
     </div>
 </div>

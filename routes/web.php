@@ -8,6 +8,7 @@ use App\Http\Controllers\HelloWord;
 use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\News;
 use App\Http\Controllers\Newscontrollers;
+use App\Http\Controllers\SocialController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -77,3 +78,16 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::post('/admin/profile', [\App\Http\Controllers\Admin\ProfileController::class, 'update'])
     ->name('admin:profile')
     ->middleware('auth');
+
+Route::get('/parser', [\App\Http\Controllers\Admin\ParserController::class, 'index'])
+    ->name('parser');
+
+Route::group([
+    'prefix' => 'social',
+    'as' => 'social::',
+], function () {
+    Route::get('/login', [SocialController::class, 'loginVK'])
+        ->name('login-vk');
+    Route::get('/responce', [SocialController::class, 'responseVK'])
+        ->name('response-vk');
+});
